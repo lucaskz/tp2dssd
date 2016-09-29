@@ -1,1 +1,1 @@
-web:    java -jar target/TP2-CloudComputing.jar
+web:    java -jar target/TP2DSSD-0.0.1-SNAPSHOT.jar
