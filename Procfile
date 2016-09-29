@@ -1,0 +1,1 @@
+web:    java -jar target/TP2-CloudComputing.jar
