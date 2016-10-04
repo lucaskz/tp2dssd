@@ -1,0 +1,60 @@
+Ejemplo RestController
+
+@RestController
+public class GreetingController {
+
+    private static final String template = "Hello, %s!";
+    private final AtomicLong counter = new AtomicLong();
+
+    @RequestMapping("/greeting")
+    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) throws IOException {
+        return new Greeting(counter.incrementAndGet(),
+                String.format(template, name));
+    }
+}
+
+-------------------
+
+public class Greeting {
+
+    private final long id;
+    private final String content;
+
+    public Greeting(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+}
+
+
+
+**************************////////////////////////////////////////////////***********************************
+
+OAuth2 Yaml para Spring Boot
+
+security:
+  oauth2:
+    client:
+      clientId: 596165206145-2565vba79b77agspv0kugksicla8qh0e.apps.googleusercontent.com
+      clientSecret: dSd9B8I9QUpzgXT4hQzaEfu0
+      accessTokenUri: https://accounts.google.com/o/oauth2/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+        - https://www.googleapis.com/auth/drive
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true
+
+**************************////////////////////////////////////////////////***********************************
