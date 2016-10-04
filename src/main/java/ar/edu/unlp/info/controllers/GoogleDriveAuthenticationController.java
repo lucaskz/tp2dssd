@@ -55,6 +55,6 @@ public class GoogleDriveAuthenticationController {
                 e.printStackTrace();
             }
         }
-        return "/index";
+        return "index";
     }
 }
