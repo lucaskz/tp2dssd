@@ -50,7 +50,7 @@ public class GoogleDriveAuthenticationController {
             try {
                 helper.saveCredentials(request.getParameter("code"));
                 drive.getUserFiles();
-                return "/index";
+                return "index";
             } catch (IOException e) {
                 e.printStackTrace();
             }

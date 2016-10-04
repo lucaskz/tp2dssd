@@ -54,7 +54,7 @@ public class GoogleDriveAuthenticationService {
     private static Credential CREDENTIAL;
 
 
-    private static final String CALLBACK_URI = "https://tp2dssd.herokuapp.com/";
+    private static final String CALLBACK_URI = "https://tp2dssd.herokuapp.com";
 
     private String stateToken;
 
