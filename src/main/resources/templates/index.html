@@ -28,17 +28,14 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">SPRING BOOT MVC</a>
+				<a class="navbar-brand" href="#">TP2DSSD Drive App</a>
+
 			</div>
 			<div class="navbar-collapse collapse">
-				<form class="navbar-form navbar-right" action="${login}"
-					method="POST">
-					<a th:href="${URL}" class="btn btn-success">Sign in</a>
-					<a class="btn btn-success" data-toggle="collapse"
-						href="#collapseExample" aria-expanded="false"
-						aria-controls="collapseExample"> Registro </a>
-
-				</form>
+				<div class="navbar-form navbar-right">
+					<a th:if="${URL}" th:href="${URL}" class="btn btn-success">
+						<img th:src="@{img/DriveIcon.png}"/><b> Acceder a Drive</b></a>
+				</div>
 			</div>
 			<!--/.navbar-collapse -->
 
