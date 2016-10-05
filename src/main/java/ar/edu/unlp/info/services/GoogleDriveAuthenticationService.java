@@ -1,10 +1,7 @@
 package ar.edu.unlp.info.services;
 
 import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
-import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
+import com.google.api.client.googleapis.auth.oauth2.*;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
@@ -45,7 +42,7 @@ public class GoogleDriveAuthenticationService {
     private static HttpTransport HTTP_TRANSPORT;
 
     private static final List<String> SCOPES =
-            Arrays.asList(DriveScopes.DRIVE);
+            Arrays.asList(DriveScopes.DRIVE, "email");
 
     private static FileDataStoreFactory DATA_STORE_FACTORY;
 
@@ -53,8 +50,9 @@ public class GoogleDriveAuthenticationService {
 
     private static Credential CREDENTIAL;
 
+    //private static final String CALLBACK_URI = "https://tp2dssd.herokuapp.com";
 
-    private static final String CALLBACK_URI = "https://tp2dssd.herokuapp.com";
+    private static final String CALLBACK_URI = "http://localhost:8080/";
 
     private String stateToken;
 
@@ -112,9 +110,8 @@ public class GoogleDriveAuthenticationService {
 
         GoogleTokenResponse response = flow.newTokenRequest(authCode).setRedirectUri(CALLBACK_URI).execute();
         CREDENTIAL = flow.createAndStoreCredential(response, null);
-        System.out.println(" Credential access token is "+CREDENTIAL.getAccessToken());
-        System.out.println("Credential refresh token is "+CREDENTIAL.getRefreshToken());
-
+        System.out.println("Credential access token is " + CREDENTIAL.getAccessToken());
+        System.out.println("Credential refresh token is " + CREDENTIAL.getRefreshToken());
     }
 
     public static Drive getDriveService() throws IOException {
@@ -123,7 +120,6 @@ public class GoogleDriveAuthenticationService {
                 .setApplicationName(APPLICATION_NAME)
                 .build();
     }
-
 
     public Credential getCredential () {
 
