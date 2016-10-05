@@ -40,7 +40,6 @@ public class GoogleDriveAuthenticationController {
                 || request.getParameter("state") == null) {
 
             model.addAttribute("URL", helper.buildLoginUrl());
-            model.addAttribute("logged", true);
             session.setAttribute("state", helper.getStateToken());
 
         } else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
@@ -49,6 +48,7 @@ public class GoogleDriveAuthenticationController {
 
             try {
                 helper.saveCredentials(request.getParameter("code"));
+                model.addAttribute("logged", true);
                 drive.getUserFiles();
                 return "index";
             } catch (IOException e) {
