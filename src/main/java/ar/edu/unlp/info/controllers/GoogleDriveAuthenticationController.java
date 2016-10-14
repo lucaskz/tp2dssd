@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.controllers;
 
 import ar.edu.unlp.info.services.GoogleDriveAuthenticationService;
+import ar.edu.unlp.info.services.GoogleDriveOperationsService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class GoogleDriveAuthenticationController {
 
 
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = {"/","/index"})
     public String getGoogleDriveLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws IOException {
 
 

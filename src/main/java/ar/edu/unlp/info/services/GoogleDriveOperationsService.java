@@ -18,7 +18,7 @@ import static ar.edu.unlp.info.services.GoogleDriveAuthenticationService.getDriv
 public class GoogleDriveOperationsService {
 
 
-    public void getUserFiles() throws IOException {
+    public static void getUserFiles() throws IOException {
         // Build a new authorized API client service.
         Drive service = getDriveService();
 
