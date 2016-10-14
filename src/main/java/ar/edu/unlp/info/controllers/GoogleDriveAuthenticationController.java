@@ -1,6 +1,5 @@
 package ar.edu.unlp.info.controllers;
 
-import ar.edu.unlp.info.services.GoogleDriveOperationsService;
 import ar.edu.unlp.info.services.GoogleDriveAuthenticationService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +21,10 @@ public class GoogleDriveAuthenticationController {
 
 
     private final GoogleDriveAuthenticationService helper;
-    private final GoogleDriveOperationsService drive;
 
     @Autowired
-    public GoogleDriveAuthenticationController(GoogleDriveAuthenticationService helper, GoogleDriveOperationsService drive) {
+    public GoogleDriveAuthenticationController(GoogleDriveAuthenticationService helper) {
         this.helper=helper;
-        this.drive=drive;
     }
 
 
@@ -36,20 +33,17 @@ public class GoogleDriveAuthenticationController {
     public String getGoogleDriveLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws IOException {
 
 
-        if (request.getParameter("code") == null
-                || request.getParameter("state") == null) {
+        if (request.getParameter("code") == null || request.getParameter("state") == null) {
 
             model.addAttribute("URL", helper.buildLoginUrl());
-            model.addAttribute("logged", true);
             session.setAttribute("state", helper.getStateToken());
 
         } else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
             session.removeAttribute("state");
-            model.addAttribute("logged", false);
 
             try {
                 helper.saveCredentials(request.getParameter("code"));
-               // drive.getUserFiles();
+                model.addAttribute("logged", true);
                 return "index";
             } catch (IOException e) {
                 e.printStackTrace();
