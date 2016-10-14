@@ -49,7 +49,7 @@ public class GoogleDriveAuthenticationController {
 
             try {
                 helper.saveCredentials(request.getParameter("code"));
-                drive.getUserFiles();
+               // drive.getUserFiles();
                 return "index";
             } catch (IOException e) {
                 e.printStackTrace();
