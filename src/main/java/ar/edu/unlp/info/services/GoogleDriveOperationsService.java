@@ -20,7 +20,7 @@ import static ar.edu.unlp.info.services.GoogleDriveAuthenticationService.getDriv
 public class GoogleDriveOperationsService {
 
 
-    public List<File> getUserFiles(String raiz) throws IOException {
+    public List<File> getUserFiles() throws IOException {
         // Build a new authorized API client service.
         Drive service = getDriveService();
         FileList request = service.files().list()
