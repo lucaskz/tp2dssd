@@ -25,7 +25,7 @@ public class GoogleDriveOperationsController {
           this.drive=drive;
     }
 
-    @RequestMapping(value = "/listMyFiles", method= RequestMethod.GET)
+    @RequestMapping(value = "/listmyfiles", method= RequestMethod.GET)
     public  String  getMyFiles(Model model) throws IOException {
 
         List<File> files = drive.getUserFiles();

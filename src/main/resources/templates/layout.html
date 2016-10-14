@@ -3,13 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Welcome to Spring Web MVC project</title>
+    <link rel="stylesheet" th:href="@{/css/style.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/styles.css}"/>
-    <script th:src="@{js/jquery-3.1.1.min.js}"></script>
-    <script th:src="@{js/bootstrap.min.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
     <script src="https://apis.google.com/js/api.js"></script>
-
+    <script th:src="@{/js/jstree.min.js}"></script>
 
 </head>
 <body>
@@ -24,7 +25,7 @@ gapi.load("client", onLoadFn);
 <script>
 
     var signinButton = document.getElementById('signin-button');
-    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
 
     // Handle the initial sign-in state.
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
