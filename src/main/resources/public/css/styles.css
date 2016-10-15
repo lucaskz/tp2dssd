@@ -16,6 +16,7 @@ html,body {
 body {
 	font: 12px Arial, Helvetica, sans-serif;
 	background: url('../img/portada.png');
+	padding-top: 70px;
 	color: #444
 }
 
@@ -127,4 +128,6 @@ footer .nav>li>a:hover {
     font-size: 55px;
 }
 
-
+table{
+	background-color: white;
+}

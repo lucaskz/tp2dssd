@@ -18,29 +18,28 @@ import java.util.List;
 @Controller
 public class GoogleDriveOperationsController {
 
-    private final GoogleDriveOperationsService drive;
+	private final GoogleDriveOperationsService drive;
 
-    @Autowired
-    public  GoogleDriveOperationsController(GoogleDriveOperationsService drive){
-          this.drive=drive;
-    }
+	@Autowired
+	public GoogleDriveOperationsController(GoogleDriveOperationsService drive) {
+		this.drive = drive;
+	}
 
-    @RequestMapping(value = "/listmyfiles", method= RequestMethod.GET)
-    public  String  getMyFiles(Model model) throws IOException {
+	@RequestMapping(value = "/listmyfiles", method = RequestMethod.GET)
+	public String getMyFiles(Model model) throws IOException {
 
-        List<File> files = drive.getUserFiles();
-        model.addAttribute("MyFiles",files);
-        return  "files";
+		List<File> files = drive.getUserFiles();
+		model.addAttribute("MyFiles", files);
+		return "files";
 
-    }
+	}
 
-   /* @RequestMapping(method = RequestMethod.GET, value = "/file/{identifier}")
-    public  @ResponseBody File  getFileById (@PathVariable String identifier) throws IOException {
+	@RequestMapping(method = RequestMethod.GET, value = "/file/{identifier}")
+	public String getFileById(@PathVariable String identifier, Model model)	throws IOException {
+		List<File> files = drive.getFileByIdentifier(identifier);
+		model.addAttribute("MyFiles", files);
+		return "files";
 
-           // return  drive.getFileByIdentifier(identifier);
-
-    }
-*/
-
+	}
 
 }
