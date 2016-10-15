@@ -28,36 +28,6 @@
 		</tbody>
 	</table>
 
-    <ul>
-        <li>RootNode
-            <ul>
-
-                <li th:each="file : ${MyFiles}" th:text="${file.name}" th:href="@{/file/file.id}"
-                    th:attr="data-target='#accordion'" data-toggle="collapse" class="accordion-toggle">
-
-
-                    <!-- <p th:text="${ file.list.size}"></p>
-                     <div th:if="${not file.list.isEmpty}">
-
-                         <div class="accordion-body collapse" th:id="'#accordion'" >
-                         <h1>Result</h1>
-
-
-                         <th:block  th:object="${file}">
-
-                                 <li th:each="item : *{list}" th:text="${item.name}">Item description here...</li>
-
-
-                         </th:block>
-                         </div>-->
-                </li>
-
-            </ul>
-
-        </li>
-
-    </ul>
-
 </div>
 <script>
 
