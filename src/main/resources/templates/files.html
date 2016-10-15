@@ -10,7 +10,23 @@
 
 
 <div id="loadTree" layout:fragment="content">
-
+	<table class="table table-hover table-condensed">
+  	<thead>
+			<tr>
+				<th>#</th>
+				<th>Nombre</th>
+				<th>Ultima edición</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="file,iterStat  : ${MyFiles}"  >
+				<td th:text="${iterStat.count}" ></td>
+				<td><a th:href="@{/file/(identifier=${file.id})}">file</a></td>
+				<td th:text="${file.name}"></td>
+				<td th:text="${file.modifiedTime}"></td>
+			</tr>
+		</tbody>
+	</table>
 
     <ul>
         <li>RootNode
