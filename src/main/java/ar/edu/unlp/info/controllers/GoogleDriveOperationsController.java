@@ -37,7 +37,7 @@ public class GoogleDriveOperationsController {
 	@RequestMapping(method = RequestMethod.GET, value = "/file/{identifier}")
 	public String getFileById(@PathVariable String identifier, Model model)	throws IOException {
 		List<File> files = drive.getFileByIdentifier(identifier);
-		model.addAttribute("MyFiles", files);
+        model.addAttribute("MyFiles", files);
 		return "files";
 
 	}

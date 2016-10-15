@@ -20,8 +20,15 @@
 		</thead>
 		<tbody>
 			<tr th:each="file,iterStat  : ${MyFiles}"  >
+                <td th:if="${not #lists.isEmpty(file)}">
+                   Es directorio
+                </td>
+
+
 				<td th:text="${iterStat.count}" ></td>
-				<td><a th:href="@{/file/(identifier=${file.id})}">file</a></td>
+				<td><a th:href="@{'/file/' + ${file.id}}">File</a></td>
+
+
 				<td th:text="${file.name}"></td>
 				<td th:text="${file.modifiedTime}"></td>
 			</tr>
