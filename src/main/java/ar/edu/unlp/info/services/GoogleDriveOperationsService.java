@@ -28,7 +28,7 @@ public class GoogleDriveOperationsService {
                 .setQ("'root' in parents")
                 .setFields("nextPageToken, files(id, name)")
                 .execute();
-        
+
         return request.getFiles();
 
     }
