@@ -7,9 +7,8 @@
 
 </head>
 <body>
-
-
 <div id="loadTree" layout:fragment="content">
+	<input type="hidden" id="token" th:value="${token}"/>
 	<table class="table table-hover table-condensed">
   	<thead>
 			<tr>
@@ -24,16 +23,11 @@
 				<td><a th:href="@{/file/(identifier=${file.id})}">file</a></td>
 				<td th:text="${file.name}"></td>
 				<td th:text="${file.modifiedTime}"></td>
+				<td><button th:onclick="'share(\'' +${file.id} + '\');'">Share</button></td>
 			</tr>
 		</tbody>
 	</table>
-
 </div>
-<script>
-
-$(function () { $('#loadTree').jstree(); });
-
-
-</script>
 </body>
+
 </html>

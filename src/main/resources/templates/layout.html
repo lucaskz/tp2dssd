@@ -11,29 +11,12 @@
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script th:src="@{/js/jstree.min.js}"></script>
+    <script th:src="@{/js/functions.js}"></script>
 
 </head>
 <body>
 
-<script>
-function onLoadFn() {
-  // Make gapi.client calls
-}
-gapi.load("client", onLoadFn);
-</script>
 
-<script>
-
-    var signinButton = document.getElementById('signin-button');
-
-
-    // Handle the initial sign-in state.
-    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-
-    signinButton.addEventListener("click", handleSigninClick);
-    signoutButton.addEventListener("click", handleSignoutClick);
-
-</script>
 
 <div th:replace="fragments :: header"></div>
 
