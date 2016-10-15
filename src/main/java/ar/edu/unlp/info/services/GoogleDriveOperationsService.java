@@ -53,7 +53,7 @@ public class GoogleDriveOperationsService {
         Drive service = getDriveService();
         FileList request = service.files().list()
                 .setPageSize(30)
-                .setQ(identifier + " in parents")
+                .setQ("'"+identifier +"' in parents")
                 .setFields("nextPageToken, files(id, name,modifiedTime)")
                 .execute();
         
