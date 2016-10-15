@@ -1,11 +1,13 @@
 package ar.edu.unlp.info.controllers;
 
+import ar.edu.unlp.info.services.GoogleDriveAuthenticationService;
 import ar.edu.unlp.info.services.GoogleDriveOperationsService;
+
 import com.google.api.services.drive.model.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -18,29 +20,32 @@ import java.util.List;
 @Controller
 public class GoogleDriveOperationsController {
 
-    private final GoogleDriveOperationsService drive;
+	private final GoogleDriveOperationsService drive;
+	
+	private final GoogleDriveAuthenticationService helper;
 
-    @Autowired
-    public  GoogleDriveOperationsController(GoogleDriveOperationsService drive){
-          this.drive=drive;
-    }
+	@Autowired
+	public GoogleDriveOperationsController(GoogleDriveOperationsService drive,GoogleDriveAuthenticationService helper) {
+		this.drive = drive;
+		this.helper=helper;
+	}
 
-    @RequestMapping(value = "/listMyFiles", method= RequestMethod.GET)
-    public  String  getMyFiles(Model model) throws IOException {
+	@RequestMapping(value = "/file", method = RequestMethod.GET)
+	public String getMyFiles(Model model) throws IOException {
+		List<File> files = drive.getUserFiles();
+		model.addAttribute("token", helper.getCredential().getAccessToken());
+		model.addAttribute("MyFiles", files);
+		return "files";
 
-        List<File> files = drive.getUserFiles();
-        model.addAttribute("MyFiles",files);
-        return  "files";
+	}
 
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "/file/{identifier}")
+	public String getFileById(@PathVariable String identifier, Model model)	throws IOException {
+		List<File> files = drive.getFileByIdentifier(identifier);
+		model.addAttribute("token", helper.getCredential().getAccessToken());
+		model.addAttribute("MyFiles", files);
+		return "files";
 
-   /* @RequestMapping(method = RequestMethod.GET, value = "/file/{identifier}")
-    public  @ResponseBody File  getFileById (@PathVariable String identifier) throws IOException {
-
-           // return  drive.getFileByIdentifier(identifier);
-
-    }
-*/
-
+	}
 
 }
