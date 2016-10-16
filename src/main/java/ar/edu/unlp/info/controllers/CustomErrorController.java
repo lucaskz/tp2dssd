@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Ezequiel on 13/10/2016.
@@ -28,7 +27,7 @@ public class CustomErrorController implements ErrorController {
         Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
         String errorMessage = null;
         if (throwable != null) {
-            errorMessage = throwable.getMessage();
+            errorMessage = "Error interno";
         }
         else if (statusCode==null) {
             errorMessage="Error interno";
