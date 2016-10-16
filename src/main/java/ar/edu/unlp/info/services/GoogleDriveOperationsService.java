@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static ar.edu.unlp.info.services.GoogleDriveAuthenticationService.getDriveService;
 
@@ -21,20 +24,19 @@ public class GoogleDriveOperationsService {
 
 
     public List<File> getUserFiles() throws IOException {
-        // Build a new authorized API client service.
+
+
         Drive service = getDriveService();
         FileList request = service.files().list()
                 .setPageSize(30)
                 .setQ("'root' in parents")
                 .setFields("nextPageToken, files(id, name)")
                 .execute();
-        return request.getFiles();
+     return request.getFiles();
 
-
-    }
 }
 
 
-
+}
 
 
