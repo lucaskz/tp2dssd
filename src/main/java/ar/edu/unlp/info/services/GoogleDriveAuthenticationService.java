@@ -50,9 +50,8 @@ public class GoogleDriveAuthenticationService {
 
     private static Credential CREDENTIAL;
 
+    //private static final String CALLBACK_URI = "https://tp2dssd.herokuapp.com";
     private static final String CALLBACK_URI = "http://localhost:8080/";
-
-    //private static final String CALLBACK_URI = "http://localhost:8080/";
 
     private String stateToken;
 
@@ -70,7 +69,7 @@ public class GoogleDriveAuthenticationService {
         }
 
         flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT,
-                JSON_FACTORY, CLIENT_SECRETS, SCOPES).setAccessType("offline").setApprovalPrompt("force").build();
+                JSON_FACTORY, CLIENT_SECRETS, SCOPES).setAccessType("online").setApprovalPrompt("auto").build();
         generateStateToken();
 
     }
