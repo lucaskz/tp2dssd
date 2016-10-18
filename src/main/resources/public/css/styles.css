@@ -41,9 +41,8 @@ footer {
     min-height:50px;
     padding-top:20px;
     margin-top:250px;
-    bottom: 0;
     width: 100%;
-    position:fixed;
+    position: absolute;
 }
 
 footer .nav>li>a {
