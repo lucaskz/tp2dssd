@@ -43,6 +43,7 @@ footer {
     margin-top:250px;
     bottom: 0;
     width: 100%;
+    position:fixed;
 }
 
 footer .nav>li>a {
