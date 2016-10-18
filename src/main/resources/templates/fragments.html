@@ -1,64 +1,54 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
-    <title>HTML fragments</title>
+<title>HTML fragments</title>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" th:fragment="header">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span> <span
-                    class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
-            </button>
-            <div th:if="${session.logged}" class="navbar-brand dropdown">
-                <span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TP2DSSD Drive App
-                    <span class="caret"></span></span>
-
-                <ul class="dropdown-menu">
-                    <li><a th:href="@{/}">Home</a></li>
-                    <li class="divider"></li>
-                    <li><a th:href="@{/file}">Listar mis archivos</a> </li>
-                    <li><a href="#">Compartir...</a> </li>
-                </ul>
-            </div>
-            <a href="#" th:if="${session.logged==null}" class="navbar-brand">TP2DSSD Drive App</a>
-
-        </div>
-        <div class="navbar-collapse collapse">
-            <div class="navbar-form navbar-right">
-                <a id="signin-button" th:if="${session.logged==null}" th:href="${URL}" class="btn btn-success">
-                    <img th:src="@{img/iconDrive.png}"/><b> Acceder a Drive</b></a>
-                <a id="signout-button" th:if="${session.logged}" th:href="@{/revoketoken}" class="btn btn-success">
-                    <img th:src="@{img/iconDrive.png}"/><b> Salir de mi Drive</b></a>
-            </div>
-        </div>
-        <!--/.navbar-collapse -->
-    </div>
-</nav>
-
-
-<footer id="footer" th:fragment="footer">
-
-    <div class="container">
-
-        <div class="row">
-            <div class="col-xs-6">
-                <p class="text-left"> Autores: </p>
-                <p class="text-left"> Ezequiel Panoff, Lucas Kaseta y Matias Barrera </p>
-            </div>
-            <div class="col-xs-6">
-                <p class="text-right">Powered by @SpringBoot</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</footer>
-
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"	th:fragment="header">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span	class="icon-bar"></span>
+				</button>
+				<div th:if="${session.logged}" class="navbar-brand dropdown">
+					<span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TP2DSSD Drive
+						App <span class="caret"></span>
+					</span>
+					<ul class="dropdown-menu">
+						<li><a th:href="@{/}">Home</a></li>
+						<li class="divider"></li>
+						<li><a th:href="@{/file}">Listar mis archivos</a></li>
+					</ul>
+				</div>
+				<a href="#" th:if="${session.logged==null}" class="navbar-brand">TP2DSSD	Drive App</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<div class="navbar-form navbar-right">
+					<a id="signin-button" th:if="${session.logged==null}"	th:href="${URL}" class="btn btn-success"> 
+						<img th:src="@{img/iconDrive.png}" /><b> Acceder a Drive</b>
+					</a> 
+					<a id="signout-button" th:if="${session.logged}" th:href="@{/revoketoken}" class="btn btn-success"> 
+						<img th:src="@{img/iconDrive.png}" /><b> Salir de mi Drive</b>
+					</a>
+				</div>
+			</div>
+			<!--/.navbar-collapse -->
+		</div>
+	</nav>
+	<footer id="footer" th:fragment="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6">
+					<p class="text-left">Autores:</p>	<p class="text-left">Ezequiel Panoff, Lucas Kaseta y Matias	Barrera</p>
+				</div>
+				<div class="col-xs-6">
+					<p class="text-right">Powered by @SpringBoot</p>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
