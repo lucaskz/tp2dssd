@@ -24,7 +24,7 @@ public class GoogleDriveOperationsService {
         FileList request = service.files().list()
                 .setPageSize(30)
                 .setQ("'root' in parents")
-                .setFields("nextPageToken, files(id, name,modifiedTime)")
+                .setFields("nextPageToken, files(id, name,modifiedTime,mimeType,shared,ownedByMe)")
                 .execute();
 
         return request.getFiles();
@@ -37,7 +37,7 @@ public class GoogleDriveOperationsService {
         FileList request = service.files().list()
                 .setPageSize(30)
                 .setQ(id + " in parents")
-                .setFields("nextPageToken, files(id, name,modifiedTime)")
+                .setFields("nextPageToken, files(id, name,modifiedTime,mimeType,shared,ownedByMe)")
                 .execute();
         return request.getFiles();
 
@@ -49,7 +49,7 @@ public class GoogleDriveOperationsService {
         FileList request = service.files().list()
                 .setPageSize(30)
                 .setQ("'" + identifier + "' in parents")
-                .setFields("nextPageToken, files(id, name,modifiedTime)")
+                .setFields("nextPageToken, files(id, name,modifiedTime,mimeType,shared,ownedByMe)")
                 .execute();
 
         return request.getFiles();
