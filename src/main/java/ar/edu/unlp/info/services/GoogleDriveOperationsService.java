@@ -3,13 +3,9 @@ package ar.edu.unlp.info.services;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
-
 import org.springframework.stereotype.Service;
 
-
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static ar.edu.unlp.info.services.GoogleDriveAuthenticationService.getDriveService;
@@ -30,11 +26,11 @@ public class GoogleDriveOperationsService {
                 .setQ("'root' in parents")
                 .setFields("nextPageToken, files(id, name,modifiedTime)")
                 .execute();
-        
+
         return request.getFiles();
 
     }
-    
+
     public List<File> getFiles(Integer id) throws IOException {
         // Build a new authorized API client service.
         Drive service = getDriveService();
@@ -43,23 +39,32 @@ public class GoogleDriveOperationsService {
                 .setQ(id + " in parents")
                 .setFields("nextPageToken, files(id, name,modifiedTime)")
                 .execute();
-        
         return request.getFiles();
 
     }
 
-	public List<File> getFileByIdentifier(String identifier) throws IOException {
+    public List<File> getFileByIdentifier(String identifier) throws IOException {
         // Build a new authorized API client service.
         Drive service = getDriveService();
         FileList request = service.files().list()
                 .setPageSize(30)
-                .setQ("'"+identifier +"' in parents")
+                .setQ("'" + identifier + "' in parents")
                 .setFields("nextPageToken, files(id, name,modifiedTime)")
                 .execute();
-        
-        return request.getFiles();
-	}
 
+        return request.getFiles();
+    }
+
+    public void createDocument(String nombre) throws IOException {
+        Drive service = getDriveService();
+        File fileMetadata = new File();
+        fileMetadata.setName(nombre);
+        fileMetadata.setMimeType("application/vnd.google-apps.document");
+        File file = service.files().create(fileMetadata)
+                .setFields("id")
+                .execute();
+
+    }
 }
 
 

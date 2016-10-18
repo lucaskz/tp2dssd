@@ -7,26 +7,70 @@
 
 </head>
 <body>
-<div id="loadTree" layout:fragment="content">
-	<input type="hidden" id="token" th:value="${token}"/>
-	<table class="table table-hover table-condensed">
-  	<thead>
-			<tr>
-				<th>#</th>
-				<th>Nombre</th>
-				<th>Ultima edición</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="file,iterStat  : ${MyFiles}"  >
-				<td th:text="${iterStat.count}" ></td>
-				<td><a th:href="@{/file/(identifier=${file.id})}">file</a></td>
-				<td th:text="${file.name}"></td>
-				<td th:text="${file.modifiedTime}"></td>
-				<td><button th:onclick="'share(\'' +${file.id} + '\');'">Share</button></td>
-			</tr>
-		</tbody>
-	</table>
+<div  layout:fragment="content">
+    <input type="hidden" id="token" th:value="${token}"/>
+
+    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">Crear Documento
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <form action="#" th:action="@{/file/create}" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Documento</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <input type="text" name="nombre" class="form-control input-md" placeholder="Ingrese un nombre"/>
+
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+    <table class="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Ultima edición</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="file,iterStat  : ${MyFiles}">
+
+
+
+            <td><a th:text="${file.name}" th:href="@{'/file/' + ${file.id}}"></a> </td>
+
+
+            <td th:text="${file.modifiedTime}"></td>
+
+
+            <td>
+                <button class="btn btn-info btn-sm" th:onclick="'share(\'' +${file.id} + '\');'"><span
+                        class="glyphicon glyphicon-share"></span>Share
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 
