@@ -132,5 +132,20 @@ table{
 	background-color: white;
 }
 
+td, th {
+
+    font-size: 13px;
+}
+
+thead {
+
+    background-color:#ffb366;
+}
+
+.table thead th {
+    font-size: 16px;
+    padding: 5px;
+}
+
 body { padding-top: 70px; }
 

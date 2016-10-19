@@ -8,12 +8,13 @@
 	<div layout:fragment="content">
 		<input type="hidden" id="token" th:value="${token}" />
 		<button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">Crear Documento</button>
+		<p></p>
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog modal-sm">
 				<!-- Modal content-->
 				<div class="modal-content">
-					<form action="#" th:action="@{/file/create}" method="post">
+					<form action="#" th:action="@{/files/create}" method="post">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title">Documento</h4>
@@ -32,24 +33,25 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>Nombre</th>
-					<th>Ultima edición</th>
+					<th class="text-center">Nombre</th>
+					<th class="text-center">Ultima edición</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="file,iterStat  : ${MyFiles}">
-					<td><i th:class="${file.mimeType} eq 'application/vnd.google-apps.folder'  ? 'fa fa-folder' : 'fa fa-file-o'" aria-hidden="true"></i></td>
-					<td th:if="${file.mimeType} eq 'application/vnd.google-apps.folder'"><a th:text="${file.name}" th:href="@{'/file/' + ${file.id}}"></a></td>
+					<td><i th:class="${file.mimeType} eq 'application/vnd.google-apps.folder'  ? 'fa fa-2x fa-folder-o' : 'fa fa-2x fa-file-o'" aria-hidden="true"></i></td>
+					<td th:if="${file.mimeType} eq 'application/vnd.google-apps.folder'"><a th:text="${file.name}" th:href="@{'/files/' + ${file.id}}"></a></td>
 					<td th:if="${file.mimeType} ne 'application/vnd.google-apps.folder'" th:text="${file.name}"></td>
-					<td th:text="${file.modifiedTime}"></td>
-					<td th:if="!${file.shared} and ${file.ownedByMe}">
-						<button class="btn btn-info btn-sm" th:onclick="'share(\'' +${file.id} + '\');'">
-							<span class="glyphicon glyphicon-share"></span>Compartir
+					<td class="text-center" th:text="${file.modifiedTime}"></td>
+					<td class="text-right" th:if="!${file.shared} and ${file.ownedByMe}">
+						<button class="btn btn-info" th:onclick="'share(\'' +${file.id} + '\');'">
+							<span class="glyphicon glyphicon-share"></span> Compartir
 						</button>
 					</td>
-					<td th:if="${file.shared} and ${file.ownedByMe}">
-						<button class="btn btn-info btn-sm" th:onclick="'share(\'' +${file.id} + '\');'">
-							<span class="glyphicon glyphicon-share"></span>No Compartir
+					<td class="text-right" th:if="${file.shared} and ${file.ownedByMe}">
+						<button class="btn btn-danger" th:onclick="'share(\'' +${file.id} + '\');'">
+							<span class="glyphicon glyphicon-share"></span> No Compartir
 						</button>
 					</td>
 				</tr>
