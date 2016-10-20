@@ -5,10 +5,12 @@
           'email',
           'profile',
           // Add other scopes needed by your application.
- ];
+  ];
+ 
+ 
 
 
-init = function() {
+var init = function() {
 	s = new gapi.drive.share.ShareClient();
 	s.setOAuthToken($('#token').val());
 }
@@ -16,11 +18,22 @@ window.onload = function() {
 	gapi.load('drive-share', init);
 }
 
-share = function(id){
+var share = function(id){
     gapi.client.setApiKey(API_KEY);
     checkAuth();
 	s.setItemIds([id]);
 	s.showSettingsDialog();
+}
+
+var showCrearDocumento = function(p){
+	if(p.signed_in){
+		$("#myModal").modal();
+	}
+}
+
+var crearDocumento = function(){
+//	checkAuth(showCrearDocumento);
+	$("#myModal").modal();
 }
 
 function handleAuthResult(authResult) {
@@ -34,11 +47,11 @@ function handleAuthResult(authResult) {
         }
 }
 
- checkAuth=function() {
+var checkAuth = function(callback) {
      gapi.auth.setToken({
             access_token: $('#token').val()
     });
-    gapi.auth.authorize(
+    return gapi.auth.authorize(
         {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false,'approval_prompt':'auto'},
-        handleAuthResult);
+        callback);
   }
