@@ -6,21 +6,28 @@
           'profile',
           // Add other scopes needed by your application.
   ];
+ 
+ 
 
 
-init = function() {
+var init = function() {
 	s = new gapi.drive.share.ShareClient();
 	s.setOAuthToken($('#token').val());
 }
-window.onload = function() {
+var window.onload = function() {
 	gapi.load('drive-share', init);
 }
 
-share = function(id){
+var share = function(id){
     gapi.client.setApiKey(API_KEY);
     checkAuth();
 	s.setItemIds([id]);
 	s.showSettingsDialog();
+}
+
+var crearDocumento = function(){
+	checkAuth();
+	$("#myModal").modal();
 }
 
 function handleAuthResult(authResult) {
