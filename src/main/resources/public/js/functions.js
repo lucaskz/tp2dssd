@@ -5,7 +5,7 @@
           'email',
           'profile',
           // Add other scopes needed by your application.
-  ];
+ ];
  
  
 
@@ -32,7 +32,7 @@ var showCrearDocumento = function(p){
 }
 
 var crearDocumento = function(){
-//	checkAuth(showCrearDocumento);
+	//checkAuth(showCrearDocumento);
 	$("#myModal").modal();
 }
 
