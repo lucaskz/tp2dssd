@@ -50,8 +50,8 @@ public class GoogleDriveAuthenticationService {
 
     private static Credential CREDENTIAL;
 
-    private static final String CALLBACK_URI = "https://tp2dssd.herokuapp.com";
-//    private static final String CALLBACK_URI = "http://localhost:8080/";
+   // private static final String CALLBACK_URI = "https://tp2dssd.herokuapp.com";
+   private static final String CALLBACK_URI = "http://localhost:8080/";
 
     private String stateToken;
 
@@ -92,6 +92,10 @@ public class GoogleDriveAuthenticationService {
     private void generateStateToken(){
         SecureRandom sr1 = new SecureRandom();
         stateToken = "google;"+sr1.nextInt();
+    }
+
+    public static GoogleClientSecrets getClientSecrets() {
+        return CLIENT_SECRETS;
     }
 
     /**s

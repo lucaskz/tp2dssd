@@ -60,6 +60,7 @@ public class GoogleDriveAuthenticationController {
 
             model.addAttribute("URL", helper.buildLoginUrl());
             session.setAttribute("state", helper.getStateToken());
+            session.setAttribute("aud", helper.getClientSecrets().getDetails().getClientId());
 
         } else if (request.getParameter("code") != null && request.getParameter("state") != null && request.getParameter("state").equals(session.getAttribute("state"))) {
             session.removeAttribute("state");
