@@ -23,7 +23,9 @@ var share = function(id){
     checkAuth();
 	s.setItemIds([id]);
 	s.showSettingsDialog();
+	//location.replace("/files")
 }
+
 
 var showCrearDocumento = function(p){
 	if(p.signed_in){
@@ -35,6 +37,12 @@ var crearDocumento = function(){
 	//checkAuth(showCrearDocumento);
 	$("#myModal").modal();
 }
+
+/*
+$('iframe').change(function(){
+      location.replace("/files")
+});
+*/
 
 function handleAuthResult(authResult) {
         if (authResult) {

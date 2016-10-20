@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html layout:decorator="layout" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<html layout:decorator="layout" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" xmlns:javascript="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Welcome to Spring Web MVC project</title>
@@ -9,7 +10,9 @@
 		<input type="hidden" id="token" th:value="${token}" />
 		<button th:onclick="'crearDocumento()'" type="button" class="btn btn-warning btn-lg" >Crear Documento</button>
 		<p></p>
-		<!-- Modal -->
+        <a th:if="${folderID}" class="btn btn-primary" href="javascript:history.back()"><i class="fa fa-level-up fa-2x" aria-hidden="true"></i></a>
+        <p th:if="${folderID}"></p>
+        <!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog modal-sm">
 				<!-- Modal content-->
@@ -21,6 +24,7 @@
 						</div>
 						<div class="modal-body">
 							<input type="text" name="nombre" class="form-control input-md" placeholder="Ingrese un nombre" />
+                            <input type="hidden" name="folderID" th:value="${folderID}"/>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-primary">Aceptar</button>
@@ -33,8 +37,9 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th class="text-center">Nombre</th>
-					<th class="text-center">Ultima edición</th>
+					<th class="text-center">NOMBRE</th>
+					<!--<th class="text-center">ESTADO</th>-->
+					<th class="text-center">ÚLTIMA EDICIÓN</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -43,15 +48,12 @@
 					<td><i th:class="${file.mimeType} eq 'application/vnd.google-apps.folder'  ? 'fa fa-2x fa-folder-o' : 'fa fa-2x fa-file-o'" aria-hidden="true"></i></td>
 					<td th:if="${file.mimeType} eq 'application/vnd.google-apps.folder'"><a th:text="${file.name}" th:href="@{'/files/' + ${file.id}}"></a></td>
 					<td th:if="${file.mimeType} ne 'application/vnd.google-apps.folder'" th:text="${file.name}"></td>
+					<!--<td class="text-center" style="color:green" th:if="${file.shared} and ${file.ownedByMe}">Compartido</td>
+					<td class="text-center" style="color:red" th:if="!${file.shared} and ${file.ownedByMe}">No compartido</td>-->
 					<td class="text-center" th:text="${file.modifiedTime}"></td>
-					<td class="text-right" th:if="!${file.shared} and ${file.ownedByMe}">
+					<td class="text-right">
 						<button class="btn btn-info" th:onclick="'share(\'' +${file.id} + '\');'">
-							<span class="glyphicon glyphicon-share"></span> Compartir
-						</button>
-					</td>
-					<td class="text-right" th:if="${file.shared} and ${file.ownedByMe}">
-						<button class="btn btn-danger" th:onclick="'share(\'' +${file.id} + '\');'">
-							<span class="glyphicon glyphicon-share"></span> No Compartir
+							<span class="glyphicon glyphicon-share"></span> Uso compartido...
 						</button>
 					</td>
 				</tr>

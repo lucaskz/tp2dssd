@@ -43,8 +43,8 @@ public class GoogleDriveOperationsController {
     @RequestMapping(method = RequestMethod.GET, value = "/files/{identifier}")
     public String getFileById(@PathVariable String identifier, Model model) throws IOException {
         List<File> files = drive.getFileByIdentifier(identifier);
-
         model.addAttribute("MyFiles", files);
+        model.addAttribute("folderID",identifier);
         model.addAttribute("token", helper.getCredential().getAccessToken());
         model.addAttribute("MyFiles", files);
         return "files";
@@ -54,8 +54,8 @@ public class GoogleDriveOperationsController {
     @RequestMapping(method = RequestMethod.POST, value = "/files/create")
     public String createDocument(Model model, HttpServletRequest request) throws IOException {
 
-        drive.createDocument(request.getParameter("nombre"));
-        return "redirect:/files";
+        drive.createDocument(request.getParameter("nombre"), request.getParameter("folderID"));
+        return "redirect:/files/" +request.getParameter("folderID");
     }
 
 }

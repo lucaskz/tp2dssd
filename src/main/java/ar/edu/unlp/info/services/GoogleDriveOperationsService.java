@@ -6,6 +6,7 @@ import com.google.api.services.drive.model.FileList;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import static ar.edu.unlp.info.services.GoogleDriveAuthenticationService.getDriveService;
@@ -16,6 +17,10 @@ import static ar.edu.unlp.info.services.GoogleDriveAuthenticationService.getDriv
 
 @Service
 public class GoogleDriveOperationsService {
+
+    public static void parseDateTime (String date) {
+
+    }
 
 
     public List<File> getUserFiles() throws IOException {
@@ -55,10 +60,12 @@ public class GoogleDriveOperationsService {
         return request.getFiles();
     }
 
-    public void createDocument(String nombre) throws IOException {
+    public void createDocument(String nombre, String folderID) throws IOException {
         Drive service = getDriveService();
         File fileMetadata = new File();
         fileMetadata.setName(nombre);
+        if (folderID!="")
+            fileMetadata.setParents(Collections.singletonList(folderID));
         fileMetadata.setMimeType("application/vnd.google-apps.document");
         File file = service.files().create(fileMetadata)
                 .setFields("id")
