@@ -7,7 +7,7 @@
 <body>
 	<div layout:fragment="content">
 		<input type="hidden" id="token" th:value="${token}" />
-		<button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">Crear Documento</button>
+		<button th:onclick="'checkAuth()'" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">Crear Documento</button>
 		<p></p>
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
