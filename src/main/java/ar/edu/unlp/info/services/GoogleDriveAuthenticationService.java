@@ -50,9 +50,9 @@ public class GoogleDriveAuthenticationService {
 
     private static Credential CREDENTIAL;
 
-    private static final String CALLBACK_URI = "https://tp2dssd.herokuapp.com";
+//    private static final String CALLBACK_URI = "https://tp2dssd.herokuapp.com";
 
-    //private static final String CALLBACK_URI = "http://localhost:8080/";
+    private static final String CALLBACK_URI = "http://localhost:8080/";
 
     private String stateToken;
 
@@ -78,7 +78,7 @@ public class GoogleDriveAuthenticationService {
 
 
     /**
-     * Builds a login URL based on client ID, secret, callback URI, and scope
+     * Builds a login URL based on client ID, state, callback URI, and scope
      */
     public String buildLoginUrl() {
 
