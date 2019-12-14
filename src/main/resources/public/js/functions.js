@@ -55,11 +55,11 @@ function handleAuthResult(authResult) {
         }
 }
 
-var checkAuth = function(callback) {
+var checkAuth = function() {
      gapi.auth.setToken({
             access_token: $('#token').val()
     });
-    return gapi.auth.authorize(
-        {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false,'approval_prompt':'auto'},
-        callback);
-  }
+    // return gapi.auth.authorize(
+    //     {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false,'approval_prompt':'auto'},
+    //     callback);
+  };
